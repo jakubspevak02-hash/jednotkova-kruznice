@@ -1,0 +1,798 @@
+:root {
+  --bg-color: #090d16;
+  --surface-bg: #111827;
+  --card-bg: #1e293b;
+  --panel-bg: #0f172a;
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --border-subtle: rgba(51, 65, 85, 0.6);
+  --accent-primary: #10b981;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-rose: #f43f5e;
+  --accent-cyan: #06b6d4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4.75rem;
+  padding-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   PEVNÉ HORNÍ SPA NAVIGAČNÍ MENU
+   ========================================================= */
+.spa-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 4rem;
+  background-color: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.spa-navbar-inner {
+  width: 100%;
+  max-width: 1340px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #34d399 0%, #60a5fa 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge-maturita {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.spa-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--panel-bg);
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.spa-link {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.spa-link:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.spa-link.active {
+  background-color: var(--card-bg);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   HLAVNÍ KONTEJNER A SPA SEKCE
+   ========================================================= */
+.app-shell {
+  width: 100%;
+  max-width: 1340px;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.spa-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.placeholder-section {
+  background-color: var(--surface-bg);
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  min-height: 420px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.placeholder-section h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.placeholder-section p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 520px;
+}
+
+/* =========================================================
+   SEKCE FUNKCE: PODMENU A LEGENDA
+   ========================================================= */
+.sub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  background-color: var(--surface-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1rem 1.35rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.sub-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sub-header-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.legend-pills {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-px { background-color: var(--accent-primary); }
+.dot-py { background-color: var(--accent-blue); }
+.dot-special { background-color: var(--accent-amber); }
+
+.line-asym {
+  width: 16px;
+  height: 0;
+  border-top: 2px dashed var(--accent-red);
+  display: inline-block;
+}
+
+.line-inv {
+  width: 16px;
+  height: 0;
+  border-top: 2.5px solid var(--accent-rose);
+  display: inline-block;
+}
+
+/* Navigační lišta pro 9 režimů funkcí */
+.nav-tabs {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0.4rem;
+  background-color: var(--panel-bg);
+  padding: 0.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.nav-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 0.55rem 0.35rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.nav-btn small {
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.nav-btn:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-btn.active {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   DVOUSLOUPCOVÝ LAYOUT (PLÁTNO + VÝUKOVÝ PANEL)
+   ========================================================= */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 560px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.col-card {
+  background-color: var(--surface-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.35rem;
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+canvas {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+}
+
+canvas.interactive-cursor {
+  cursor: grab;
+}
+
+canvas.interactive-cursor:active {
+  cursor: grabbing;
+}
+
+/* Přepínač sin / cos / tg */
+.trig-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background-color: var(--panel-bg);
+  padding: 0.35rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.trig-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 0.45rem;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trig-btn.active {
+  background-color: var(--card-bg);
+  color: var(--accent-primary);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Posuvníky + Číselné vstupy (Obousměrná vazba) */
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  background-color: var(--panel-bg);
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  gap: 0.5rem;
+}
+
+.slider-header .param-name {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.slider-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.slider-header .param-val {
+  font-weight: 700;
+  color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 0.12rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.btn-param-play {
+  background: rgba(59, 130, 246, 0.14);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  width: 26px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn-param-play:hover {
+  background: rgba(59, 130, 246, 0.28);
+  color: #ffffff;
+}
+
+.btn-param-play.playing {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.55);
+}
+
+.slider-input-row {
+  display: grid;
+  grid-template-columns: 1fr 78px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 7px;
+  background: #334155;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 2.5px solid var(--text-main);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 2.5px solid var(--text-main);
+  cursor: pointer;
+}
+
+.param-number-input {
+  width: 100%;
+  background-color: var(--surface-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  padding: 0.3rem 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.param-number-input:focus {
+  border-color: var(--accent-primary);
+}
+
+/* Spodní lišta ovládání (Inverzní funkce + Play/Pause + Reset) */
+.toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.inverse-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  padding: 0.38rem 0.7rem;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.inverse-toggle-label:hover {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--text-main);
+}
+
+.inverse-toggle-label input[type="checkbox"] {
+  accent-color: var(--accent-rose);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-play {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-play:hover {
+  background: rgba(16, 185, 129, 0.26);
+  color: #ffffff;
+}
+
+.btn-play.playing {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.btn-reset {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.75rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-reset:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   PRAVÝ SLOUPEC: VÝUKOVÝ PANEL A KATEX TYPOGRAFIE
+   ========================================================= */
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.9rem;
+  gap: 1rem;
+}
+
+.edu-title-block h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.edu-title-block p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.formula-general-badge {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: #a78bfa;
+  white-space: nowrap;
+}
+
+/* Box s konkrétní rovnicí */
+.live-equation-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+
+.live-equation-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #34d399;
+  font-weight: 700;
+}
+
+.live-equation-value {
+  font-size: 1.35rem;
+  color: var(--text-main);
+}
+
+.live-equation-value .katex-display {
+  margin: 0.2rem 0;
+  text-align: left;
+}
+
+/* Karta inverzní funkce */
+.inverse-info-card {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.1), rgba(168, 85, 247, 0.08));
+  border: 1px solid rgba(244, 63, 94, 0.45);
+  border-left: 4px solid var(--accent-rose);
+  border-radius: 12px;
+  padding: 0.9rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow-x: auto;
+}
+
+.inverse-info-title {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fb7185;
+  font-weight: 700;
+}
+
+.inverse-info-body {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.inverse-info-body .katex-display {
+  margin: 0.45rem 0;
+  text-align: left;
+}
+
+/* Mřížka vlastností funkce */
+.props-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.prop-card {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  overflow-x: auto;
+}
+
+.prop-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.prop-label {
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.prop-val {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.prop-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.text-green { color: #34d399; }
+.text-blue { color: #60a5fa; }
+.text-amber { color: #fbbf24; }
+.text-red { color: #f87171; }
+.text-purple { color: #c084fc; }
+
+/* Maturitní teorie box */
+.theory-section {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-blue);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.theory-section h3 {
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.theory-content {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.theory-content ul {
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.theory-content strong {
+  color: var(--text-main);
+}
+
+@media (max-width: 1120px) {
+  .nav-tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-top: 7.2rem;
+  }
+  .spa-navbar {
+    height: auto;
+    padding: 0.65rem 1rem;
+  }
+  .spa-navbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .spa-menu {
+    justify-content: center;
+  }
+  .app-shell {
+    padding: 0 0.75rem;
+  }
+  .nav-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .props-grid {
+    grid-template-columns: 1fr;
+  }
+}

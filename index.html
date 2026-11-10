@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematický vizualizér – Maturitní příprava</title>
+
+  <!-- KaTeX CDN pro profesionální sazbu matematických vzorců -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+  <!-- Vlastní styly aplikace -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Modulární skripty aplikace -->
+  <script defer src="math.js"></script>
+  <script defer src="canvas.js"></script>
+  <script defer src="ui.js"></script>
+</head>
+<body>
+
+  <!-- Pevné horní SPA navigační menu -->
+  <header class="spa-navbar">
+    <div class="spa-navbar-inner">
+      <div class="brand-title-group">
+        <h1 class="app-title">Matematický vizualizér</h1>
+        <span class="badge-maturita">Maturita – 4. ročník</span>
+      </div>
+
+      <nav class="spa-menu" role="tablist" aria-label="Hlavní navigace aplikace">
+        <button type="button" class="spa-link active" data-spa-target="functions" role="tab" aria-selected="true">
+          Funkce
+        </button>
+        <button type="button" class="spa-link" data-spa-target="geometry" role="tab" aria-selected="false">
+          Geometrie
+        </button>
+        <button type="button" class="spa-link" data-spa-target="maturita" role="tab" aria-selected="false">
+          Příprava na maturitu
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <!-- =====================================================
+         SEKCE 1: FUNKCE (Aktivní modul)
+         ===================================================== -->
+    <section class="spa-section" id="section-functions" data-spa-section="functions">
+      <div class="sub-header">
+        <div class="sub-header-top">
+          <span class="sub-header-title">Kategorie elementárních funkcí a goniometrie</span>
+          <div class="legend-pills">
+            <span class="legend-item"><i class="dot dot-px"></i> Průsečík P<sub>x</sub></span>
+            <span class="legend-item"><i class="dot dot-py"></i> Průsečík P<sub>y</sub></span>
+            <span class="legend-item"><i class="dot dot-special"></i> Extrém / Význačný bod</span>
+            <span class="legend-item"><i class="line-asym"></i> Asymptota</span>
+            <span class="legend-item"><i class="line-inv"></i> Inverzní f<sup>−1</sup>(x)</span>
+          </div>
+        </div>
+
+        <!-- Dynamicky generované přepínače 9 režimů (ui.js) -->
+        <nav class="nav-tabs" id="modeTabs" aria-label="Kategorie funkcí"></nav>
+      </div>
+
+      <div class="workspace-grid">
+        <!-- LEVÝ SLOUPEC: Interaktivní plátno, posuvníky + číselná pole, animace a inverze -->
+        <div class="col-card">
+          <div class="canvas-wrapper">
+            <canvas id="mainCanvas" width="520" height="520" class="interactive-cursor"></canvas>
+          </div>
+
+          <!-- Dynamicky generované posuvníky a číselná pole (ui.js) -->
+          <div class="controls-panel" id="controlsContainer"></div>
+
+          <!-- Nástrojová lišta: Inverzní funkce, Animace (Play/Pause), Reset -->
+          <div class="toolbar-row">
+            <label class="inverse-toggle-label" for="inverseToggle">
+              <input type="checkbox" id="inverseToggle">
+              <span>Zobrazit inverzní funkci f<sup>−1</sup></span>
+            </label>
+
+            <div class="toolbar-actions">
+              <button type="button" class="btn-play" id="playPauseBtn">▶ Přehrát</button>
+              <button type="button" class="btn-reset" id="resetBtn">Obnovit výchozí</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRAVÝ SLOUPEC: Výukový panel s KaTeX sazbou -->
+        <aside class="col-card">
+          <div class="edu-header">
+            <div class="edu-title-block">
+              <h2 id="eduTitle">Jednotková kružnice</h2>
+              <p id="eduSubtitle"></p>
+            </div>
+            <div class="formula-general-badge" id="eduGeneralFormula"></div>
+          </div>
+
+          <div class="live-equation-card">
+            <span class="live-equation-label">Aktuální předpis / stav</span>
+            <div class="live-equation-value" id="liveEqValue"></div>
+          </div>
+
+          <!-- Dynamický modul inverzní funkce (zobrazuje se při aktivním přepínači) -->
+          <div class="inverse-info-card hidden" id="inverseCard">
+            <span class="inverse-info-title">Inverzní funkce a záměna D(f) ↔ H(f)</span>
+            <div class="inverse-info-body" id="inverseCardContent"></div>
+          </div>
+
+          <!-- Dynamicky generované karty maturitních vlastností (D(f), H(f), monotonie, extrémy, parita, omezenost, průsečíky) -->
+          <div class="props-grid" id="propsGrid"></div>
+
+          <div class="theory-section">
+            <h3>Maturitní teorie a vliv parametrů</h3>
+            <div class="theory-content" id="theoryContent"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SEKCE 2: GEOMETRIE (Připravený kontejner pro další fázi)
+         ===================================================== -->
+    <section class="spa-section hidden" id="section-geometry" data-spa-section="geometry">
+      <div class="placeholder-section">
+        <h2>Geometrie</h2>
+        <p>Sekce pro planimetrii, stereometrii a analytickou geometrii v rovině je připravena pro budoucí rozšíření.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SEKCE 3: PŘÍPRAVA NA MATURITU (Připravený kontejner pro další fázi)
+         ===================================================== -->
+    <section class="spa-section hidden" id="section-maturita" data-spa-section="maturita">
+      <div class="placeholder-section">
+        <h2>Příprava na maturitu</h2>
+        <p>Sekce pro interaktivní maturitní úlohy, kvízy a souhrnný přehled vzorců je připravena pro budoucí rozšíření.</p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
